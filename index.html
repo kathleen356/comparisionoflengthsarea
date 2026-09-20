@@ -1,0 +1,1251 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6.2 Solving problems involving the comparison of lengths and areas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F8FC;
+    --grid:#E1E8F2;
+    --grid-strong:#CFDAEC;
+    --ink:#18233F;
+    --ink-soft:#5A6783;
+    --ink-faint:#8A95AD;
+    --accent:#4F46E5;
+    --accent-soft:#EAE9FF;
+    --mode:#DB2777;
+    --ok:#16A34A; --ok-soft:#E7F6EC;
+    --green:#16A34A; --green-bg:#E7F6EC; --green-line:#B7E4C6;
+    --amber:#D97706; --amber-bg:#FCF1E1; --amber-line:#F3D9AE;
+    --red:#DC2626;   --red-bg:#FBEAEA;   --red-line:#F2C2C2;
+    --c-orange:#F0862E; --c-green:#6FB544; --c-magenta:#D94FB0;
+    --c-blue:#3E9AE6; --c-purple:#8B6FE0; --c-teal:#2FB6A8; --c-red:#E8604C;
+    --card:#FFFFFF;
+    --shadow:0 1px 2px rgba(24,35,63,.05), 0 10px 30px -18px rgba(24,35,63,.25);
+    --radius:18px;
+    --maxw:1020px;
+    --display:'Fredoka', 'Trebuchet MS', system-ui, sans-serif;
+    --body:'Nunito', system-ui, -apple-system, sans-serif;
+    --mono:'Space Mono', ui-monospace, 'Courier New', monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--ink); font-family:var(--body);
+    font-size:17px; line-height:1.6;
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:26px 26px;
+    background-position:-1px -1px;
+  }
+  body.students .teacher-note{display:none !important}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+
+  header.bar{
+    position:sticky; top:0; z-index:40;
+    background:rgba(246,248,252,.88); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--grid-strong);
+  }
+  .bar-inner{max-width:var(--maxw); margin:0 auto; padding:10px 20px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+  .brand{font-family:var(--display); font-weight:700; font-size:1.05rem; letter-spacing:.2px;
+    display:flex; align-items:center; gap:9px; margin-right:auto}
+  .brand .glyph{display:inline-block; width:24px; height:19px; flex:0 0 auto}
+  nav.jump{display:flex; gap:4px; flex-wrap:wrap}
+  nav.jump a{font-family:var(--display); font-weight:500; font-size:.82rem; text-decoration:none;
+    color:var(--ink-soft); padding:6px 10px; border-radius:999px}
+  nav.jump a:hover{color:var(--ink); background:var(--accent-soft)}
+  .tview{font-family:var(--display); font-weight:600; font-size:.8rem; cursor:pointer;
+    border:1.5px solid var(--accent); color:var(--accent); background:transparent;
+    padding:6px 13px; border-radius:999px; display:inline-flex; align-items:center; gap:7px}
+  .tview .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  body.students .tview{border-color:var(--ink-faint); color:var(--ink-soft)}
+  body.students .tview .dot{background:var(--ink-faint)}
+
+  .hero{padding:54px 0 30px}
+  .eyebrow{font-family:var(--mono); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--accent); font-weight:700}
+  .hero h1{font-family:var(--display); font-weight:700; line-height:1.05;
+    font-size:clamp(2.3rem,6vw,4.2rem); margin:.25em 0 .15em; letter-spacing:-.5px}
+  .hero h1 .green{color:var(--c-green)} .hero h1 .pink{color:var(--mode)}
+  .lead{font-size:1.08rem; color:var(--ink-soft); max-width:none; margin:.2em 0 1.2em}
+
+  section{padding:38px 0; scroll-margin-top:64px}
+  .part-tag{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:.72rem;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:6px}
+  .part-tag::before{content:""; width:22px; height:2px; background:var(--accent); display:inline-block}
+  h2{font-family:var(--display); font-weight:700; font-size:clamp(1.6rem,3.2vw,2.3rem);
+    margin:.1em 0 .35em; letter-spacing:-.3px; line-height:1.08}
+  h3{font-family:var(--display); font-weight:600; font-size:1.2rem; margin:0 0 .4em}
+  h4{font-family:var(--display); font-weight:700; margin:0 0 8px; font-size:1.05rem}
+
+  .card{background:var(--card); border:1px solid var(--grid-strong); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:24px}
+  .card + .card{margin-top:18px}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:stretch}
+  .two > .card + .card{margin-top:0}
+  @media(max-width:720px){.two{grid-template-columns:1fr}}
+
+  .formula-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px}
+  @media(max-width:560px){.formula-grid{grid-template-columns:1fr}}
+  .formula{background:var(--accent-soft); padding:16px; border-radius:10px}
+  .formula .formula-label{font-family:var(--display); font-weight:700; color:var(--accent);
+    margin-bottom:12px; font-size:.9rem; letter-spacing:.15em}
+  .formula .formula-main{font-size:1rem; font-weight:700; color:var(--ink); line-height:1.4}
+
+  .keyword{color:var(--mode); font-weight:800}
+  .define{background:var(--accent-soft); border-left:4px solid var(--accent); border-radius:10px;
+    padding:14px 16px; font-size:1.05rem}
+  .define b{color:var(--accent)}
+
+  .criteria-card{padding:30px 28px; margin:26px 0}
+  .criteria-card .part-tag{margin-bottom:16px}
+  .success-list{list-style:none; padding:0; margin:0; display:grid; gap:14px}
+  .success-list li{display:flex; gap:15px; margin:0; align-items:center;
+    border:1px solid var(--grid-strong); border-radius:12px; padding:16px 20px; background:var(--card)}
+  .success-list li::before{content:""; width:14px; height:14px; border-radius:4px;
+    background:var(--accent); flex:0 0 auto}
+  .success-list li span{display:block; font-weight:700; line-height:1.45}
+  @media(max-width:560px){
+    .criteria-card{padding:22px 18px}
+    .success-list li{padding:14px 16px; align-items:flex-start}
+    .success-list li::before{margin-top:5px}
+  }
+
+  .scenario{background:var(--accent-soft); border:2px solid var(--accent); border-radius:14px;
+    padding:20px; margin:20px 0; line-height:1.7}
+  .scenario h4{color:var(--accent); margin-top:0}
+
+  button{font-family:inherit; font-size:1rem; cursor:pointer; border:none; border-radius:8px;
+    padding:10px 18px; font-weight:600; transition:all 180ms}
+  .btn-primary{background:var(--accent); color:white}
+  .btn-primary:hover{background:var(--accent); transform:translate(0,-2px); box-shadow:0 4px 12px rgba(79,70,229,.3)}
+  .btn-primary:active{transform:translate(0,0)}
+
+  .quiz-question{background:var(--card); border:1px solid var(--grid-strong); border-radius:14px;
+    padding:20px; margin:16px 0}
+  .quiz-question h4{margin-top:0}
+  .quiz-input{width:100%; padding:10px 12px; border:2px solid var(--grid-strong); border-radius:8px;
+    font-family:var(--mono); font-size:1rem; margin:8px 0 12px; background:var(--card); color:var(--ink)}
+  .quiz-input:focus{outline:none; border-color:var(--accent); background:var(--accent-soft)}
+  .quiz-input.is-correct{border-color:var(--ok); background:var(--ok-soft)}
+  .quiz-input.is-wrong{border-color:var(--red); background:var(--red-bg)}
+  .compare-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:12px 0}
+  @media(max-width:560px){.compare-grid{grid-template-columns:1fr; gap:4px}}
+  .compare-grid .field-label{display:block; font-weight:600; margin-bottom:6px}
+  .quiz-feedback{margin:10px 0 0; padding:10px 12px; border-radius:8px; font-weight:600}
+  .quiz-feedback.correct{background:var(--ok-soft); color:var(--ok)}
+  .quiz-feedback.incorrect{background:var(--red-bg); color:var(--red)}
+  .quiz-feedback.neutral{background:var(--grid); color:var(--ink-soft)}
+  .quiz-feedback ul{margin:8px 0 0; padding-left:20px; font-weight:600}
+  .quiz-feedback li{margin:4px 0; font-family:var(--mono); font-size:.9rem}
+
+  .table-scroll{overflow-x:auto; margin:16px 0; -webkit-overflow-scrolling:touch}
+  .data-table{width:100%; min-width:470px; border-collapse:collapse; font-size:.95rem}
+  .data-table th{font-family:var(--display); font-weight:700; text-align:center;
+    padding:10px 12px; border:1px solid var(--grid-strong)}
+  .data-table thead th{background:var(--green-bg); color:var(--ink)}
+  .data-table tbody th{background:var(--card); font-size:1.1rem}
+  .data-table td{border:1px solid var(--grid-strong); padding:8px 10px; text-align:center}
+  .data-table td.given{font-family:var(--mono); font-weight:700}
+  .cell-input{margin:0; max-width:130px; padding:8px 10px; text-align:center}
+
+  .sentence{font-size:1.06rem; line-height:2.2; margin:4px 0 16px}
+  .letter-pick{font-family:var(--mono); font-size:1rem; font-weight:700; color:var(--ink);
+    background:var(--card); border:2px solid var(--grid-strong); border-radius:8px;
+    padding:6px 8px; margin:0 5px; cursor:pointer}
+  .letter-pick:focus{outline:none; border-color:var(--accent); background:var(--accent-soft)}
+  .letter-pick.is-correct{border-color:var(--ok); background:var(--ok-soft)}
+  .letter-pick.is-wrong{border-color:var(--red); background:var(--red-bg)}
+
+  .tier-switch{display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin:22px 0 26px}
+  .switch-label{font-family:var(--mono); font-size:.76rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--ink-faint); font-weight:700}
+  .tier-chips{display:flex; gap:12px; flex-wrap:wrap}
+  .chip{display:inline-flex; align-items:center; gap:9px; padding:10px 20px;
+    border:2px solid var(--grid-strong); border-radius:999px; background:var(--card);
+    color:var(--ink-soft); cursor:pointer; font-weight:700; font-size:1rem;
+    transition:border-color 140ms, color 140ms}
+  .chip .dot{width:14px; height:14px; border-radius:50%; flex:0 0 auto;
+    background:var(--dot, var(--accent))}
+  .chip .dot-all{background:conic-gradient(var(--c-green) 0 33.34%, var(--amber) 0 66.67%, var(--red) 0)}
+  .chip:hover{border-color:var(--ink-faint); color:var(--ink)}
+  .chip:focus-visible{outline:3px solid var(--accent-soft); outline-offset:2px; border-color:var(--accent)}
+  .chip.active{border-color:var(--ink); color:var(--ink)}
+
+  .tier-content{margin:20px 0}
+  .tier{display:none}
+  .tier.active{display:block}
+  /* only bites when more than one tier is on screen, i.e. the All view */
+  .tier.active + .tier.active{margin-top:36px; padding-top:32px; border-top:1px solid var(--grid-strong)}
+  .tier-tag{display:inline-block; padding:4px 10px; border-radius:6px; font-size:.85rem;
+    font-weight:700; font-family:var(--display); margin-bottom:8px}
+  .tier.green .tier-tag{background:var(--green-bg); color:var(--green)}
+  .tier.amber .tier-tag{background:var(--amber-bg); color:var(--amber)}
+  .tier.red .tier-tag{background:var(--red-bg); color:var(--red)}
+
+  .reflection{background:var(--accent-soft); border:2px dashed var(--accent); border-radius:14px;
+    padding:20px; text-align:center; margin:20px 0}
+  .reflection h3{margin-top:0}
+  .rating-buttons{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .rating-btn{padding:12px 20px; border:2px solid var(--grid-strong); border-radius:8px;
+    background:var(--card); cursor:pointer; font-weight:600; transition:all 140ms}
+  .rating-btn:hover{border-color:var(--accent); transform:scale(1.05)}
+  .rating-btn.selected{background:var(--accent); color:white; border-color:var(--accent)}
+
+  .worked-example{background:var(--card); border:3px solid var(--c-blue); border-radius:14px;
+    padding:20px; margin:20px 0}
+  .worked-example h4{color:var(--c-blue); margin-top:0}
+  .worked-example .example-step{margin:16px 0; padding:12px; background:rgba(62,154,230,.08); border-radius:8px}
+  .worked-example .step-label{font-family:var(--display); font-weight:700; color:var(--c-blue); font-size:.9rem; text-transform:uppercase; letter-spacing:.1em}
+
+  /* Diagrams. Colours and fonts are set here rather than as SVG presentation
+     attributes so that var() resolves correctly in every browser, Safari included. */
+  .shape-vis{display:flex; justify-content:center; margin:16px 0}
+  .shape-vis svg{max-width:100%; height:auto; border:1px solid var(--grid-strong);
+    border-radius:8px; background:white; padding:10px}
+  .shape-vis svg text{font-family:var(--mono); font-size:12px; font-weight:700; fill:var(--ink)}
+  .shape-vis svg text.lbl{font-family:var(--display); font-size:14px}
+  .shape-vis svg text.note{font-weight:400; fill:var(--ink-soft)}
+  .shape-vis svg .shp{fill:none; stroke-width:3}
+  .shape-vis svg .blue{stroke:var(--c-blue)}
+  .shape-vis svg .blue-fill{fill:rgba(62,154,230,.1); stroke:var(--c-blue); stroke-width:3}
+  .shape-vis svg .magenta{stroke:var(--c-magenta)}
+  .shape-vis svg .grn{fill:rgba(111,181,68,.15); stroke:var(--c-green); stroke-width:3}
+  .shape-vis svg .amb{fill:rgba(217,119,6,.12); stroke:var(--amber); stroke-width:3}
+  .shape-vis svg .cut{fill:white; stroke:var(--c-red); stroke-width:2; stroke-dasharray:5 5}
+  .shape-vis svg.lg text{font-size:15px}
+  .shape-vis svg .hole{fill:#fff; stroke:var(--c-blue); stroke-width:3}
+  .shape-vis svg .tick line{stroke:var(--c-blue); stroke-width:2.5; stroke-linecap:round}
+  .shape-vis svg .dim line{stroke:var(--c-blue); stroke-width:1.5}
+  .shape-vis svg .arrowhead{fill:var(--c-blue)}
+  .shape-vis svg .room{fill:#EADFCF; stroke:#3A5A9B; stroke-width:2.5}
+  .shape-vis svg .carpet{fill:#BCD6F0; stroke:#3A5A9B; stroke-width:2.5}
+  .shape-vis svg .peas{fill:#A8D08D; stroke:#1F1F1F; stroke-width:1.5}
+  .shape-vis svg .straw{fill:#E79AAB; stroke:#1F1F1F; stroke-width:1.5}
+  .shape-vis svg text.bed-lbl{font-family:var(--body); font-size:14px; font-weight:600}
+  .shape-vis svg text.cap{font-family:var(--display); font-size:15px; fill:var(--ink-soft)}
+  .shape-vis svg .ghost{fill:none; stroke:var(--ink-faint); stroke-width:1.5; stroke-dasharray:4 4}
+  .shape-vis svg text.grn-lbl{fill:var(--c-green)}
+  .shape-vis svg text.amb-lbl{fill:var(--amber)}
+  .shape-vis svg text.red-lbl{fill:var(--c-red)}
+
+  footer{background:var(--grid); color:var(--ink-soft); padding:30px; text-align:center; font-size:.9rem; margin-top:40px}
+  footer a{color:var(--accent); text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  .teacher-note{background:rgba(219,39,119,.08); border-left:4px solid var(--mode); padding:12px 14px;
+    margin:14px 0; font-size:.95rem; border-radius:6px}
+  .teacher-note em{color:var(--mode); font-weight:600; font-style:normal}
+
+  .score-display{background:var(--ok-soft); border:2px solid var(--ok); border-radius:10px;
+    padding:16px; text-align:center; margin:20px 0}
+  .score-display .score-num{font-family:var(--mono); font-size:2rem; font-weight:700; color:var(--ok)}
+  .score-display .score-label{color:var(--ok); font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <div class="brand">
+      <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+      </svg>
+      <span>6.2 Lengths &amp; Areas</span>
+    </div>
+    <nav class="jump">
+      <a href="#big-idea">Key Ideas</a>
+      <a href="#worked">Worked Examples</a>
+      <a href="#practice">Practice</a>
+    </nav>
+    <button type="button" class="tview" id="viewToggle" aria-pressed="false">
+      <span class="dot"></span>
+      <span id="viewLabel">Teacher View</span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">6.2 Measurement</div>
+    <h1>6.2 Solving problems involving the <span class="green">comparison</span> of <span class="pink">lengths and areas</span></h1>
+    <p class="lead">We are learning to solve problems involving the comparison of lengths and areas, using appropriate units.</p>
+
+    <div class="card criteria-card">
+      <div class="part-tag">Success Criteria</div>
+      <ul class="success-list" id="successList"></ul>
+    </div>
+
+    <div class="teacher-note">
+      <em>Teacher Note:</em> This Grade 6 lesson builds on the foundational understanding from Grade 5. Students should now be able to apply area and perimeter concepts to solve authentic problems involving composite shapes, real-world contexts, and decision-making scenarios.
+    </div>
+  </section>
+
+  <section id="big-idea">
+    <div class="part-tag">Foundation</div>
+    <h2>Quick Recap: Perimeter and Area</h2>
+    <p>Before solving problems, let's refresh our understanding of how perimeter and area work together.</p>
+
+    <div class="two">
+      <div class="card">
+        <h3 style="color:var(--c-orange); margin-top:0">Perimeter</h3>
+        <p><strong>The distance around the outside of a shape.</strong></p>
+        <p style="font-size:.95rem; color:var(--ink-soft); margin-bottom:0">Measured in units like mm, cm, m or km. Used when we need to know how long a boundary is, such as fencing, framing, or trimming.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--c-blue); margin-top:0">Area</h3>
+        <p><strong>The space covered inside a shape.</strong></p>
+        <p style="font-size:.95rem; color:var(--ink-soft); margin-bottom:0">Measured in square units like mm², cm², m² or km². Used when we need to know how much surface is covered, such as painting, flooring, or material.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3 style="margin-top:0">Key Formulas for Rectangles</h3>
+      <div class="formula-grid">
+        <div class="formula">
+          <div class="formula-label">PERIMETER</div>
+          <div class="formula-main">Perimeter = 2 × (length + width)</div>
+        </div>
+        <div class="formula">
+          <div class="formula-label">AREA</div>
+          <div class="formula-main">Area = length × width</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="teacher-note">
+      <em>Teacher Note:</em> Emphasise that perimeter is 1-dimensional (length) and area is 2-dimensional (square units). This conceptual difference is crucial for Grade 6 students to solve problems correctly.
+    </div>
+  </section>
+
+  <section id="worked">
+    <div class="part-tag">Guided Practice</div>
+    <h2>Worked Examples</h2>
+    <p>Work through these examples with your class. Think aloud about the steps, units, and strategies used.</p>
+
+    <div class="worked-example">
+      <h4>Worked Example 1: Calculating area and perimeter of rectangles</h4>
+      <p><strong>Problem:</strong> Work out the area and perimeter of each rectangle.</p>
+
+      <div class="shape-vis">
+        <svg width="360" height="180" viewBox="0 0 360 180" role="img" aria-label="Rectangle 1 measures 26 millimetres by 10 millimetres. Rectangle 2 measures 2 centimetres by 13 centimetres.">
+          <!-- Rectangle 1: 26 mm x 10 mm -->
+          <g>
+            <rect class="shp blue" x="60" y="60" width="110" height="42"/>
+            <text x="115" y="50" text-anchor="middle">26 mm</text>
+            <text x="52" y="86" text-anchor="end">10 mm</text>
+          </g>
+          <!-- Rectangle 2: 2 cm x 13 cm -->
+          <g>
+            <rect class="shp magenta" x="265" y="25" width="26" height="130"/>
+            <text x="278" y="18" text-anchor="middle">2 cm</text>
+            <text x="255" y="94" text-anchor="end">13 cm</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="example-step">
+        <div class="step-label">Step 1: Rectangle 1 (Blue), Perimeter</div>
+        <p style="margin:8px 0"><strong>Given:</strong> Length = 26 mm, Width = 10 mm</p>
+        <p style="margin:8px 0; font-family:var(--mono)">P = 2(L + W)</p>
+        <p style="margin:8px 0; font-family:var(--mono)">P = 2(26 + 10)</p>
+        <p style="margin:8px 0; font-family:var(--mono)">P = 2(36) = <strong>72 mm</strong></p>
+      </div>
+
+      <div class="example-step">
+        <div class="step-label">Step 2: Rectangle 1 (Blue), Area</div>
+        <p style="margin:8px 0"><strong>Given:</strong> Length = 26 mm, Width = 10 mm</p>
+        <p style="margin:8px 0; font-family:var(--mono)">A = L × W</p>
+        <p style="margin:8px 0; font-family:var(--mono)">A = 26 × 10 = <strong>260 mm²</strong></p>
+      </div>
+
+      <div class="example-step">
+        <div class="step-label">Step 3: Rectangle 2 (Pink), Perimeter</div>
+        <p style="margin:8px 0"><strong>Given:</strong> Length = 13 cm, Width = 2 cm</p>
+        <p style="margin:8px 0; font-family:var(--mono)">P = 2(L + W)</p>
+        <p style="margin:8px 0; font-family:var(--mono)">P = 2(13 + 2)</p>
+        <p style="margin:8px 0; font-family:var(--mono)">P = 2(15) = <strong>30 cm</strong></p>
+      </div>
+
+      <div class="example-step">
+        <div class="step-label">Step 4: Rectangle 2 (Pink), Area</div>
+        <p style="margin:8px 0"><strong>Given:</strong> Length = 13 cm, Width = 2 cm</p>
+        <p style="margin:8px 0; font-family:var(--mono)">A = L × W</p>
+        <p style="margin:8px 0; font-family:var(--mono)">A = 13 × 2 = <strong>26 cm²</strong></p>
+      </div>
+
+      <div class="scenario">
+        <strong>Reflection: the units matter.</strong> At first glance 260 mm² looks like a much bigger number than 26 cm², but we cannot compare them until they are in the same unit. There are 100 mm² in 1 cm², so 260 mm² = 2.6 cm². Rectangle 2 actually covers ten times as much space as Rectangle 1. Always convert to a common unit before you compare.
+      </div>
+    </div>
+
+    <div class="worked-example">
+      <h4>Worked Example 2: Composite shapes, the phone case problem</h4>
+      <p><strong>Problem:</strong> Olivia made a phone case prototype for her future mobile phone. She cut a square out for the camera. If she is using recycled cardboard boxes, how much material does she need?</p>
+
+      <div class="shape-vis">
+        <svg class="lg" width="520" height="380" viewBox="0 0 520 380" role="img" aria-label="A 9 centimetre by 7 centimetre rectangle. A 5 centimetre square is cut out of it, set 1 centimetre in from the left edge and 1 centimetre down from the top, leaving 1 centimetre below it.">
+          <defs>
+            <marker id="we2arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path class="arrowhead" d="M0 0 L10 5 L0 10 z"/>
+            </marker>
+          </defs>
+
+          <!-- 9 cm by 7 cm sheet, drawn at 40 units per centimetre -->
+          <rect class="blue-fill" x="100" y="55" width="360" height="280"/>
+          <!-- 5 cm square cut-out, 1 cm in from the left, top, and bottom -->
+          <rect class="hole" x="140" y="95" width="200" height="200"/>
+
+          <!-- ticks showing the four sides of the square are equal -->
+          <g class="tick">
+            <line x1="240" y1="87" x2="240" y2="103"/>
+            <line x1="240" y1="287" x2="240" y2="303"/>
+            <line x1="132" y1="195" x2="148" y2="195"/>
+            <line x1="332" y1="195" x2="348" y2="195"/>
+          </g>
+
+          <!-- 1 cm margins -->
+          <g class="dim">
+            <line x1="100" y1="38" x2="140" y2="38" marker-start="url(#we2arrow)" marker-end="url(#we2arrow)"/>
+            <line x1="84" y1="55" x2="84" y2="95" marker-start="url(#we2arrow)" marker-end="url(#we2arrow)"/>
+            <line x1="84" y1="295" x2="84" y2="335" marker-start="url(#we2arrow)" marker-end="url(#we2arrow)"/>
+          </g>
+
+          <text x="120" y="28" text-anchor="middle">1 cm</text>
+          <text x="70" y="81" text-anchor="end">1 cm</text>
+          <text x="70" y="321" text-anchor="end">1 cm</text>
+          <text x="196" y="278" text-anchor="middle">5 cm</text>
+          <text x="474" y="201">7 cm</text>
+          <text x="280" y="366" text-anchor="middle">9 cm</text>
+        </svg>
+      </div>
+
+      <div class="example-step">
+        <div class="step-label">Step 1: Calculate outer rectangle area</div>
+        <p style="margin:8px 0"><strong>The phone case outer dimensions:</strong> 9 cm × 7 cm</p>
+        <p style="margin:8px 0; font-family:var(--mono)">A<sub>outer</sub> = 9 × 7 = <strong>63 cm²</strong></p>
+      </div>
+
+      <div class="example-step">
+        <div class="step-label">Step 2: Calculate camera cutout area</div>
+        <p style="margin:8px 0"><strong>The square camera hole:</strong> 5 cm × 5 cm</p>
+        <p style="margin:8px 0; font-family:var(--mono)">A<sub>cutout</sub> = 5 × 5 = <strong>25 cm²</strong></p>
+      </div>
+
+      <div class="example-step">
+        <div class="step-label">Step 3: Calculate material needed</div>
+        <p style="margin:8px 0"><strong>Material used = Outer area − Cutout area</strong></p>
+        <p style="margin:8px 0; font-family:var(--mono)">A<sub>material</sub> = 63 − 25 = <strong>38 cm²</strong></p>
+      </div>
+
+      <div class="scenario">
+        <strong>Answer:</strong> Olivia needs <strong>38 cm²</strong> of recycled cardboard to make her phone case prototype.
+        <br><br>
+        <strong>Why this matters:</strong> In real life, we often need to calculate areas of composite shapes (shapes made from simpler shapes). Whether it's cutting a hole in a plate, designing a picture frame, or manufacturing products, we subtract areas to find what we actually need.
+      </div>
+    </div>
+
+    <div class="teacher-note">
+      <em>Teacher Note:</em> Have students draw their own diagrams for Example 2 and label all dimensions. Discuss real-world contexts: manufacturing, construction, design. Ask: "What other composite shape problems might you encounter in real life?"
+    </div>
+  </section>
+
+  <section id="practice">
+    <div class="part-tag">Differentiated Practice</div>
+    <h2>Must Complete Work</h2>
+
+    <div class="tier-switch">
+      <span class="switch-label" id="tierSwitchLabel">Show tier:</span>
+      <div class="tier-chips" role="group" aria-labelledby="tierSwitchLabel">
+        <button type="button" class="chip active" data-tier="all" aria-pressed="true"><span class="dot dot-all"></span>All</button>
+        <button type="button" class="chip" data-tier="green" aria-pressed="false"><span class="dot" style="--dot:var(--c-green)"></span>Green</button>
+        <button type="button" class="chip" data-tier="amber" aria-pressed="false"><span class="dot" style="--dot:var(--amber)"></span>Amber</button>
+        <button type="button" class="chip" data-tier="red" aria-pressed="false"><span class="dot" style="--dot:var(--red)"></span>Red</button>
+      </div>
+    </div>
+
+    <!-- Green Tier -->
+    <div class="tier green active" data-tier="green">
+      <div class="tier-tag">🟢 CONSOLIDATION</div>
+      <p>Start here to build confidence with basic area and perimeter calculations.</p>
+
+      <div id="greenQuiz"></div>
+
+      <div class="teacher-note">
+        <em>Teacher Note:</em> These questions focus on direct application of formulas to rectangles and squares. Look for correct use of formulas and unit awareness.
+      </div>
+    </div>
+
+    <!-- Amber Tier -->
+    <div class="tier amber active" data-tier="amber">
+      <div class="tier-tag">🟠 APPLICATION</div>
+      <p><strong>Using data to compare area and perimeter.</strong> Complete the table first, then use your completed table to finish the sentences.</p>
+
+      <div id="amberQuiz"></div>
+
+      <div class="teacher-note">
+        <em>Teacher Note:</em> This is one connected task: the sentences depend on the table, so check the table before students move on. The point of the set is that area and perimeter vary independently. Parts (a) and (b) give the two key counter-examples, and (d) is worth dwelling on, since E has the longest perimeter and the smallest area. Parts (e) and (f) have more than one correct answer and the page accepts any valid pair, so ask students to justify the pair they chose rather than looking for "the" answer.
+      </div>
+    </div>
+
+    <!-- Red Tier -->
+    <div class="tier red active" data-tier="red">
+      <div class="tier-tag">🔴 CHALLENGE</div>
+      <p>Multi-step problems. Read carefully, then work backwards from what you are told.</p>
+
+      <div id="redQuiz"></div>
+
+      <div class="teacher-note">
+        <em>Teacher Note:</em> Both problems reward sketching and annotating before calculating. In Q1 the key insight is that the strip the strawberries lost runs the full width of the garden, so 15 ÷ 3 gives that width. In Q2 the common error is subtracting 1 m rather than 2 m from each dimension; ask students to trace the margin along both ends before they calculate.
+      </div>
+    </div>
+
+    <div class="score-display" id="scoreDisplay" style="display:none">
+      <div class="score-num" id="scoreNum">0</div>
+      <div class="score-label">Questions solved across all three tiers</div>
+    </div>
+
+    <div class="reflection">
+      <h3>Reflection: How are you feeling?</h3>
+      <div class="rating-buttons">
+        <button type="button" class="rating-btn" data-rating="got">✅ Got it</button>
+        <button type="button" class="rating-btn" data-rating="nearly">🤔 Nearly there</button>
+        <button type="button" class="rating-btn" data-rating="need">🆘 Need help</button>
+      </div>
+      <p id="ratingFeedback" style="margin-top:12px; display:none" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><strong>6.2 Solving problems involving the comparison of lengths and areas</strong></p>
+  <p>Victorian Curriculum 2.0 · Measurement · Grade 6</p>
+</footer>
+
+<script>
+/* ---------------------------------------------------------------
+   Success criteria
+---------------------------------------------------------------- */
+const successCriteria = [
+  "I can explain perimeter as the distance around a shape and area as the space inside it",
+  "I can use A = L × W and P = 2 × (length + width) to calculate the area and perimeter of a rectangle",
+  "I can find the area of a composite shape by adding or subtracting simpler rectangles",
+  "I can convert to a common unit before comparing two measurements"
+];
+
+function initSuccessList() {
+  const list = document.getElementById('successList');
+  successCriteria.forEach(function (criterion) {
+    const li = document.createElement('li');
+    const span = document.createElement('span');
+    span.textContent = criterion;
+    li.appendChild(span);
+    list.appendChild(li);
+  });
+}
+
+/* ---------------------------------------------------------------
+   Teacher / student view
+---------------------------------------------------------------- */
+function initViewToggle() {
+  const btn = document.getElementById('viewToggle');
+  btn.addEventListener('click', function () {
+    const studentView = document.body.classList.toggle('students');
+    document.getElementById('viewLabel').textContent = studentView ? 'Student View' : 'Teacher View';
+    btn.setAttribute('aria-pressed', String(studentView));
+  });
+}
+
+/* ---------------------------------------------------------------
+   Tier switching
+---------------------------------------------------------------- */
+function initTiers() {
+  const chips = document.querySelectorAll('.chip[data-tier]');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      const tier = chip.dataset.tier;
+      document.querySelectorAll('.tier').forEach(function (t) {
+        t.classList.toggle('active', tier === 'all' || t.dataset.tier === tier);
+      });
+      chips.forEach(function (c) {
+        const on = c === chip;
+        c.classList.toggle('active', on);
+        c.setAttribute('aria-pressed', String(on));
+      });
+    });
+  });
+}
+
+/* ---------------------------------------------------------------
+   Scoring
+---------------------------------------------------------------- */
+const solved = new Set();
+let totalQuestions = 0;
+
+function updateScore() {
+  document.getElementById('scoreNum').textContent = solved.size + ' / ' + totalQuestions;
+  document.getElementById('scoreDisplay').style.display = solved.size > 0 ? 'block' : 'none';
+}
+
+/* ---------------------------------------------------------------
+   Helpers
+---------------------------------------------------------------- */
+function tidy(value) {
+  return String(value).toLowerCase().replace(/\s+/g, '').replace(/(cm|mm|km|m)(²|2)?$/, '');
+}
+
+function closeEnough(a, b) {
+  return Math.abs(a - b) < 0.01;
+}
+
+function makeNumberInput(placeholder, ariaLabel) {
+  const input = document.createElement('input');
+  input.type = 'number';
+  input.step = 'any';
+  input.className = 'quiz-input';
+  input.placeholder = placeholder;
+  input.setAttribute('aria-label', ariaLabel);
+  return input;
+}
+
+/* Marks a set of numeric boxes, colouring each one on its own merits. */
+function makeFieldChecker(fields, feedback, key, q) {
+  return function () {
+    const values = fields.map(function (f) { return parseFloat(f.input.value); });
+    if (values.some(function (v) { return isNaN(v); })) {
+      fields.forEach(function (f) { f.input.classList.remove('is-correct', 'is-wrong'); });
+      setFeedback(feedback, 'neutral', 'Fill in every box before checking.');
+      return;
+    }
+
+    let correctCount = 0;
+    const missed = [];
+    fields.forEach(function (f, i) {
+      const ok = closeEnough(values[i], f.answer);
+      f.input.classList.toggle('is-correct', ok);
+      f.input.classList.toggle('is-wrong', !ok);
+      if (ok) { correctCount++; } else { missed.push(f.name); }
+    });
+
+    if (correctCount === fields.length) {
+      solved.add(key);
+      updateScore();
+      setFeedback(feedback, 'correct',
+        q.done || '✓ Perfect. All four values are right. Compare them closely: which shape has the larger area, and which has the larger perimeter?',
+        fields.map(function (f) { return f.name + ': ' + f.explanation; }));
+    } else {
+      setFeedback(feedback, 'incorrect',
+        '✗ Not quite yet. You have ' + correctCount + ' of ' + fields.length +
+        ' correct. Check the boxes outlined in red' +
+        (missed.length <= 4 ? ' (' + missed.join(', ') + ')' : '') +
+        ', then try again. ' + (q.hint || 'Remember A = L × W and P = 2(L + W).'));
+    }
+  };
+}
+
+/* Builds the length/width/area/perimeter table, pushing its inputs onto `fields`. */
+function buildDataTable(q, fields) {
+  const scroll = document.createElement('div');
+  scroll.className = 'table-scroll';
+
+  const table = document.createElement('table');
+  table.className = 'data-table';
+
+  const thead = document.createElement('thead');
+  const headRow = document.createElement('tr');
+  ['Rectangle', 'Length', 'Width', 'Area', 'Perimeter'].forEach(function (h) {
+    const th = document.createElement('th');
+    th.scope = 'col';
+    th.textContent = h;
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  q.rows.forEach(function (r) {
+    const tr = document.createElement('tr');
+
+    const rowHead = document.createElement('th');
+    rowHead.scope = 'row';
+    rowHead.textContent = r.name;
+    tr.appendChild(rowHead);
+
+    [r.length, r.width].forEach(function (v) {
+      const td = document.createElement('td');
+      td.className = 'given';
+      td.textContent = v + ' cm';
+      tr.appendChild(td);
+    });
+
+    [
+      { kind: 'area', unit: 'cm²', answer: r.area,
+        working: r.length + ' × ' + r.width + ' = ' + r.area + ' cm²' },
+      { kind: 'perimeter', unit: 'cm', answer: r.perimeter,
+        working: '2 × (' + r.length + ' + ' + r.width + ') = ' + r.perimeter + ' cm' }
+    ].forEach(function (spec) {
+      const td = document.createElement('td');
+      const name = r.name + ' ' + spec.kind;
+      const input = makeNumberInput(spec.unit, 'Rectangle ' + name);
+      input.classList.add('cell-input');
+      td.appendChild(input);
+      tr.appendChild(td);
+      fields.push({ input: input, answer: spec.answer, explanation: spec.working, name: name });
+    });
+
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  scroll.appendChild(table);
+  return scroll;
+}
+
+function setFeedback(el, kind, text, workings) {
+  el.className = 'quiz-feedback ' + kind;
+  el.textContent = text;
+  if (workings && workings.length) {
+    const ul = document.createElement('ul');
+    workings.forEach(function (line) {
+      const li = document.createElement('li');
+      li.textContent = line;
+      ul.appendChild(li);
+    });
+    el.appendChild(ul);
+  }
+  el.hidden = false;
+}
+
+/* ---------------------------------------------------------------
+   Quiz building
+---------------------------------------------------------------- */
+function buildQuiz(tier, questions) {
+  const container = document.getElementById(tier + 'Quiz');
+  container.innerHTML = '';
+
+  questions.forEach(function (q, idx) {
+    totalQuestions++;
+    const key = tier + '-' + idx;
+
+    const card = document.createElement('div');
+    card.className = 'quiz-question';
+
+    const heading = document.createElement('h4');
+    heading.textContent = q.question;
+    card.appendChild(heading);
+
+    if (q.diagram) {
+      const holder = document.createElement('div');
+      holder.innerHTML = q.diagram;
+      card.appendChild(holder);
+    }
+
+    const feedback = document.createElement('div');
+    feedback.className = 'quiz-feedback';
+    feedback.hidden = true;
+    feedback.setAttribute('role', 'status');
+
+    let check;
+
+    if (q.type === 'comparison' || q.type === 'multi' || q.type === 'table') {
+      const grid = document.createElement('div');
+      grid.className = 'compare-grid';
+      const fields = [];
+
+      if (q.type === 'table') {
+        card.appendChild(buildDataTable(q, fields));
+      } else if (q.type === 'comparison') {
+        ['A', 'B'].forEach(function (shape) {
+          const col = document.createElement('div');
+          const label = document.createElement('span');
+          label.className = 'field-label';
+          label.textContent = 'Shape ' + shape + ':';
+          col.appendChild(label);
+
+          [
+            { kind: 'area', placeholder: 'Area (cm²)' },
+            { kind: 'perimeter', placeholder: 'Perimeter (cm)' }
+          ].forEach(function (spec) {
+            const name = 'Shape ' + shape + ' ' + spec.kind;
+            const input = makeNumberInput(spec.placeholder, name);
+            col.appendChild(input);
+
+            const part = q.parts.find(function (p) {
+              return p.label === shape && p.type === spec.kind;
+            });
+            fields.push({ input: input, answer: part.answer, explanation: part.explanation, name: name });
+          });
+
+          grid.appendChild(col);
+        });
+      } else {
+        q.fields.forEach(function (spec) {
+          const col = document.createElement('div');
+          const label = document.createElement('span');
+          label.className = 'field-label';
+          label.textContent = spec.label;
+          col.appendChild(label);
+
+          const input = makeNumberInput(spec.placeholder || '', spec.label);
+          col.appendChild(input);
+
+          fields.push({ input: input, answer: spec.answer, explanation: spec.explanation, name: spec.label });
+          grid.appendChild(col);
+        });
+      }
+
+      if (q.type !== 'table') { card.appendChild(grid); }
+
+      check = makeFieldChecker(fields, feedback, key, q);
+
+      fields.forEach(function (f) {
+        f.input.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') { e.preventDefault(); check(); }
+        });
+      });
+
+    } else if (q.type === 'letters') {
+      const selects = [];
+      const sentence = document.createElement('p');
+      sentence.className = 'sentence';
+
+      const chunks = q.sentence.split('{}');
+      chunks.forEach(function (text, i) {
+        sentence.appendChild(document.createTextNode(text));
+        if (i < chunks.length - 1) {
+          const sel = document.createElement('select');
+          sel.className = 'letter-pick';
+          sel.setAttribute('aria-label', 'Rectangle for blank ' + (i + 1));
+          [''].concat(q.choices).forEach(function (opt) {
+            const o = document.createElement('option');
+            o.value = opt;
+            o.textContent = opt || '?';
+            sel.appendChild(o);
+          });
+          sentence.appendChild(sel);
+          selects.push(sel);
+        }
+      });
+      card.appendChild(sentence);
+
+      check = function () {
+        const picked = selects.map(function (s) { return s.value; });
+        if (picked.some(function (v) { return !v; })) {
+          selects.forEach(function (s) { s.classList.remove('is-correct', 'is-wrong'); });
+          setFeedback(feedback, 'neutral', 'Choose a rectangle for every blank before checking.');
+          return;
+        }
+
+        const ok = q.valid(picked);
+        selects.forEach(function (s) {
+          s.classList.toggle('is-correct', ok);
+          s.classList.toggle('is-wrong', !ok);
+        });
+
+        if (ok) {
+          solved.add(key);
+          updateScore();
+          setFeedback(feedback, 'correct', '✓ Correct. ' + (q.explanation || ''));
+        } else {
+          setFeedback(feedback, 'incorrect', '✗ Not quite. ' + (q.hint || ''));
+        }
+      };
+
+    } else {
+      const input = document.createElement('input');
+      input.className = 'quiz-input';
+      if (q.type === 'number') {
+        input.type = 'number';
+        input.step = 'any';
+        input.placeholder = 'Enter your answer';
+      } else {
+        input.type = 'text';
+        input.placeholder = 'Enter your answer';
+      }
+      input.setAttribute('aria-label', 'Answer');
+      card.appendChild(input);
+
+      check = function () {
+        const raw = input.value.trim();
+        if (!raw) {
+          input.classList.remove('is-correct', 'is-wrong');
+          setFeedback(feedback, 'neutral', 'Please enter an answer.');
+          return;
+        }
+
+        let correct;
+        if (q.type === 'number') {
+          correct = closeEnough(parseFloat(raw), q.answer);
+        } else {
+          const given = tidy(raw);
+          correct = (q.accepts || [q.answer]).some(function (a) { return tidy(a) === given; });
+        }
+
+        input.classList.toggle('is-correct', correct);
+        input.classList.toggle('is-wrong', !correct);
+
+        if (correct) {
+          solved.add(key);
+          updateScore();
+          setFeedback(feedback, 'correct', '✓ Correct. ' + (q.explanation || ''));
+        } else {
+          setFeedback(feedback, 'incorrect', '✗ Not quite. ' + (q.hint || ''));
+        }
+      };
+
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); check(); }
+      });
+    }
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn-primary';
+    btn.textContent = 'Check';
+    btn.addEventListener('click', check);
+    card.appendChild(btn);
+
+    card.appendChild(feedback);
+    container.appendChild(card);
+  });
+}
+
+/* ---------------------------------------------------------------
+   Reflection
+---------------------------------------------------------------- */
+function initReflection() {
+  const messages = {
+    got: '🌟 Excellent. You have a strong understanding. Try the next tier.',
+    nearly: '📈 You are close. Review the key formulas and try more practice.',
+    need: '🤝 That is okay. Chat with your teacher or work through the worked examples again.'
+  };
+  const feedback = document.getElementById('ratingFeedback');
+
+  document.querySelectorAll('.rating-btn[data-rating]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.rating-btn').forEach(function (b) { b.classList.remove('selected'); });
+      btn.classList.add('selected');
+      feedback.textContent = messages[btn.dataset.rating];
+      feedback.style.display = 'block';
+    });
+  });
+}
+
+/* ---------------------------------------------------------------
+   Green tier: visual comparisons (diagrams drawn to a single scale
+   within each question so the shapes can be compared fairly)
+---------------------------------------------------------------- */
+const greenQuestions = [
+  {
+    question: 'Q1: Find the area and perimeter for each rectangle.',
+    type: 'comparison',
+    diagram: '<div class="shape-vis">' +
+      '<svg width="450" height="140" viewBox="0 0 450 140" role="img" aria-label="Shape A is a 4 centimetre square. Shape B is a rectangle 15 centimetres by 1 centimetre.">' +
+      '<g>' +
+        '<rect class="grn" x="60" y="28" width="72" height="72"/>' +
+        '<text class="lbl grn-lbl" x="96" y="70" text-anchor="middle">A</text>' +
+        '<text x="96" y="20" text-anchor="middle">4 cm</text>' +
+        '<text x="52" y="68" text-anchor="end">4 cm</text>' +
+      '</g>' +
+      '<g>' +
+        '<rect class="grn" x="180" y="64" width="260" height="18"/>' +
+        '<text x="310" y="56" text-anchor="middle">15 cm</text>' +
+        '<text x="172" y="78" text-anchor="end">1 cm</text>' +
+        '<text class="lbl grn-lbl" x="310" y="104" text-anchor="middle">B</text>' +
+      '</g>' +
+      '</svg></div>',
+    parts: [
+      { label: 'A', answer: 16, type: 'area', explanation: 'A = 4 × 4 = 16 cm²' },
+      { label: 'A', answer: 16, type: 'perimeter', explanation: 'P = 4 × 4 = 16 cm' },
+      { label: 'B', answer: 15, type: 'area', explanation: 'A = 15 × 1 = 15 cm²' },
+      { label: 'B', answer: 32, type: 'perimeter', explanation: 'P = 2(15 + 1) = 32 cm' }
+    ]
+  },
+  {
+    question: 'Q2: Find the area and perimeter for each rectangle.',
+    type: 'comparison',
+    diagram: '<div class="shape-vis">' +
+      '<svg width="440" height="140" viewBox="0 0 440 140" role="img" aria-label="Shape A is 5 centimetres by 4 centimetres. Shape B is 8 centimetres by 4 centimetres.">' +
+      '<g>' +
+        '<rect class="grn" x="60" y="35" width="100" height="80"/>' +
+        '<text class="lbl grn-lbl" x="110" y="80" text-anchor="middle">A</text>' +
+        '<text x="110" y="27" text-anchor="middle">5 cm</text>' +
+        '<text x="52" y="79" text-anchor="end">4 cm</text>' +
+      '</g>' +
+      '<g>' +
+        '<rect class="grn" x="220" y="35" width="160" height="80"/>' +
+        '<text class="lbl grn-lbl" x="300" y="80" text-anchor="middle">B</text>' +
+        '<text x="300" y="27" text-anchor="middle">8 cm</text>' +
+        '<text x="212" y="79" text-anchor="end">4 cm</text>' +
+      '</g>' +
+      '</svg></div>',
+    parts: [
+      { label: 'A', answer: 20, type: 'area', explanation: 'A = 5 × 4 = 20 cm²' },
+      { label: 'A', answer: 18, type: 'perimeter', explanation: 'P = 2(5 + 4) = 18 cm' },
+      { label: 'B', answer: 32, type: 'area', explanation: 'A = 8 × 4 = 32 cm²' },
+      { label: 'B', answer: 24, type: 'perimeter', explanation: 'P = 2(8 + 4) = 24 cm' }
+    ]
+  },
+  {
+    question: 'Q3: Find the area and perimeter for each rectangle. (Look closely at the areas.)',
+    type: 'comparison',
+    diagram: '<div class="shape-vis">' +
+      '<svg width="440" height="140" viewBox="0 0 440 140" role="img" aria-label="Shape A is 6 centimetres by 3 centimetres. Shape B is 9 centimetres by 2 centimetres.">' +
+      '<g>' +
+        '<rect class="grn" x="60" y="45" width="120" height="60"/>' +
+        '<text class="lbl grn-lbl" x="120" y="82" text-anchor="middle">A</text>' +
+        '<text x="120" y="37" text-anchor="middle">6 cm</text>' +
+        '<text x="52" y="80" text-anchor="end">3 cm</text>' +
+      '</g>' +
+      '<g>' +
+        '<rect class="grn" x="230" y="65" width="180" height="40"/>' +
+        '<text class="lbl grn-lbl" x="320" y="91" text-anchor="middle">B</text>' +
+        '<text x="320" y="57" text-anchor="middle">9 cm</text>' +
+        '<text x="222" y="90" text-anchor="end">2 cm</text>' +
+      '</g>' +
+      '</svg></div>',
+    parts: [
+      { label: 'A', answer: 18, type: 'area', explanation: 'A = 6 × 3 = 18 cm²' },
+      { label: 'A', answer: 18, type: 'perimeter', explanation: 'P = 2(6 + 3) = 18 cm' },
+      { label: 'B', answer: 18, type: 'area', explanation: 'A = 9 × 2 = 18 cm²' },
+      { label: 'B', answer: 22, type: 'perimeter', explanation: 'P = 2(9 + 2) = 22 cm' }
+    ]
+  }
+];
+
+/* ---------------------------------------------------------------
+   Amber tier: using data to compare area and perimeter.
+   The five rectangles are defined once here and every answer is
+   derived from them, so the table, the diagram and the sentence
+   checks can never drift apart.
+---------------------------------------------------------------- */
+const compareRects = [
+  { name: 'A', length: 10, width: 4 },
+  { name: 'B', length: 8,  width: 5 },
+  { name: 'C', length: 6,  width: 6 },
+  { name: 'D', length: 12, width: 2 },
+  { name: 'E', length: 15, width: 1 }
+];
+compareRects.forEach(function (r) {
+  r.area = r.length * r.width;
+  r.perimeter = 2 * (r.length + r.width);
+});
+
+const rectLetters = compareRects.map(function (r) { return r.name; });
+const rectBy = {};
+compareRects.forEach(function (r) { rectBy[r.name] = r; });
+
+function rArea(k)  { return rectBy[k].area; }
+function rPerim(k) { return rectBy[k].perimeter; }
+
+const maxRectArea  = Math.max.apply(null, compareRects.map(function (r) { return r.area; }));
+const maxRectPerim = Math.max.apply(null, compareRects.map(function (r) { return r.perimeter; }));
+
+/* All five drawn at 16 units per centimetre, so they are fairly comparable. */
+const rectDiagram =
+  '<div class="shape-vis">' +
+  '<svg class="lg" width="640" height="292" viewBox="0 0 640 292" role="img" ' +
+  'aria-label="Five rectangles drawn to the same scale. A is 10 by 4 centimetres, B is 8 by 5, ' +
+  'C is 6 by 6, D is 12 by 2, and E is 15 by 1 centimetres.">' +
+    '<rect class="grn" x="60"  y="86"  width="160" height="64"/>' +
+    '<text class="lbl" x="140" y="124" text-anchor="middle">A</text>' +
+    '<text x="140" y="76"  text-anchor="middle">10 cm</text>' +
+    '<text x="52"  y="122" text-anchor="end">4 cm</text>' +
+
+    '<rect class="grn" x="290" y="70"  width="128" height="80"/>' +
+    '<text class="lbl" x="354" y="116" text-anchor="middle">B</text>' +
+    '<text x="354" y="60"  text-anchor="middle">8 cm</text>' +
+    '<text x="282" y="114" text-anchor="end">5 cm</text>' +
+
+    '<rect class="grn" x="488" y="54"  width="96"  height="96"/>' +
+    '<text class="lbl" x="536" y="108" text-anchor="middle">C</text>' +
+    '<text x="536" y="44"  text-anchor="middle">6 cm</text>' +
+    '<text x="480" y="106" text-anchor="end">6 cm</text>' +
+
+    '<rect class="grn" x="60"  y="218" width="192" height="32"/>' +
+    '<text class="lbl" x="156" y="240" text-anchor="middle">D</text>' +
+    '<text x="156" y="208" text-anchor="middle">12 cm</text>' +
+    '<text x="52"  y="239" text-anchor="end">2 cm</text>' +
+
+    '<rect class="grn" x="330" y="234" width="240" height="16"/>' +
+    '<text class="lbl" x="584" y="249" text-anchor="start">E</text>' +
+    '<text x="450" y="224" text-anchor="middle">15 cm</text>' +
+    '<text x="322" y="248" text-anchor="end">1 cm</text>' +
+
+    '<text class="note" x="320" y="282" text-anchor="middle">All five rectangles are drawn to the same scale.</text>' +
+  '</svg></div>';
+
+function sentenceQuestion(title, sentence, valid, explanation, hint) {
+  return {
+    question: title,
+    type: 'letters',
+    sentence: sentence,
+    choices: rectLetters,
+    valid: valid,
+    explanation: explanation,
+    hint: hint
+  };
+}
+
+const amberQuestions = [
+  {
+    question: 'Q1: Complete the table. Work out the area and perimeter of each rectangle.',
+    type: 'table',
+    diagram: rectDiagram,
+    rows: compareRects,
+    done: '✓ The whole table is correct. Keep it in front of you for the sentences below.',
+    hint: 'Area = length × width. Perimeter = 2 × (length + width).'
+  },
+
+  sentenceQuestion(
+    'Q2a: Same area, different perimeters',
+    'The two rectangles with the same area but different perimeters are {} and {}.',
+    function (p) {
+      return p[0] !== p[1] && rArea(p[0]) === rArea(p[1]) && rPerim(p[0]) !== rPerim(p[1]);
+    },
+    'A and B both cover 40 cm², but A has a perimeter of 28 cm and B has 26 cm. Same area, different perimeter.',
+    'Look down the area column for two rectangles with matching numbers, then check their perimeters differ.'
+  ),
+
+  sentenceQuestion(
+    'Q2b: Same perimeter, different areas',
+    'The two rectangles with the same perimeter but different areas are {} and {}.',
+    function (p) {
+      return p[0] !== p[1] && rPerim(p[0]) === rPerim(p[1]) && rArea(p[0]) !== rArea(p[1]);
+    },
+    'A and D both have a perimeter of 28 cm, but A covers 40 cm² and D only 24 cm². The same fence can hold very different amounts of space.',
+    'This time look down the perimeter column for two matching numbers.'
+  ),
+
+  sentenceQuestion(
+    'Q2c: The greatest area',
+    'The rectangles with the greatest area are {} and {}.',
+    function (p) {
+      return p[0] !== p[1] && rArea(p[0]) === maxRectArea && rArea(p[1]) === maxRectArea;
+    },
+    'A and B tie at 40 cm², the largest area in the table.',
+    'Find the biggest number in the area column. Two rectangles share it.'
+  ),
+
+  sentenceQuestion(
+    'Q2d: The greatest perimeter',
+    'The rectangle with the greatest perimeter is {}.',
+    function (p) { return rPerim(p[0]) === maxRectPerim; },
+    'E has a perimeter of 32 cm, the longest in the table, even though it has the smallest area of all at 15 cm².',
+    'Find the biggest number in the perimeter column. Notice it is not the rectangle with the biggest area.'
+  ),
+
+  sentenceQuestion(
+    'Q2e: Bigger perimeter, smaller area',
+    '{} has a greater perimeter but a smaller area than {}.',
+    function (p) {
+      return p[0] !== p[1] && rPerim(p[0]) > rPerim(p[1]) && rArea(p[0]) < rArea(p[1]);
+    },
+    'Several pairs work here, for example E and A: E has the longer perimeter at 32 cm against 28 cm, yet covers far less space at 15 cm² against 40 cm². The long thin rectangles are the ones that behave this way.',
+    'Pick a long thin rectangle for the first blank and a chunky one for the second, then check both conditions against your table.'
+  ),
+
+  sentenceQuestion(
+    'Q2f: Bigger perimeter and bigger area',
+    '{} has a greater perimeter and a greater area than {}.',
+    function (p) {
+      return p[0] !== p[1] && rPerim(p[0]) > rPerim(p[1]) && rArea(p[0]) > rArea(p[1]);
+    },
+    'A and C work, and so do B and C. Both measurements go up together here, which is what most people expect, unlike parts (a), (b) and (e).',
+    'You need both numbers to be larger for the first rectangle. Compare the rows one pair at a time.'
+  )
+];
+
+/* ---------------------------------------------------------------
+   Red tier: working backwards
+---------------------------------------------------------------- */
+const redQuestions = [
+  {
+    question: 'Q1 Tim’s carpet: Tim’s lounge room measures 17 m × 8 m. He bought a rectangular carpet and placed it in the middle of the floor, leaving a 1 m margin all the way around. Calculate the perimeter and the area of the carpet.',
+    type: 'multi',
+    diagram: '<div class="shape-vis">' +
+      '<svg class="lg" width="540" height="300" viewBox="0 0 540 300" role="img" ' +
+      'aria-label="A 17 metre by 8 metre lounge floor with a carpet centred on it, leaving a 1 metre margin on every side.">' +
+      '<defs>' +
+        '<marker id="carpetArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">' +
+          '<path class="arrowhead" d="M0 0 L10 5 L0 10 z"/>' +
+        '</marker>' +
+      '</defs>' +
+      '<rect class="room" x="80" y="60" width="408" height="192"/>' +
+      '<rect class="carpet" x="104" y="84" width="360" height="144"/>' +
+      '<g class="dim">' +
+        '<line x1="80" y1="44" x2="104" y2="44" marker-start="url(#carpetArrow)" marker-end="url(#carpetArrow)"/>' +
+        '<line x1="64" y1="60" x2="64" y2="84" marker-start="url(#carpetArrow)" marker-end="url(#carpetArrow)"/>' +
+      '</g>' +
+      '<text x="92" y="34" text-anchor="middle">1 m</text>' +
+      '<text x="52" y="78" text-anchor="end">1 m</text>' +
+      '<text x="500" y="161">8 m</text>' +
+      '<text x="284" y="282" text-anchor="middle">17 m</text>' +
+      '</svg></div>',
+    fields: [
+      { label: 'Perimeter (m)', placeholder: 'Perimeter in m', answer: 42,
+        explanation: 'P = 2(15 + 6) = 2 × 21 = 42 m' },
+      { label: 'Area (m²)', placeholder: 'Area in m²', answer: 90,
+        explanation: 'A = 15 × 6 = 90 m²' }
+    ],
+    done: '✓ Both correct. The margin takes 1 m off each of the four sides, so the carpet is 15 m × 6 m.',
+    hint: 'The margin runs along both ends and both sides, so it takes 2 m off the length and 2 m off the width, not 1 m.'
+  },
+  {
+    question: 'Q2 Strawberries and peas: Yasmin has beds for peas and strawberries in her garden, as shown in the diagram. This year she moved the boundary. She changed the rectangular pea bed into a square by lengthening one of its sides by 3 m. As a result, the area of the strawberry patch was reduced by 15 m². What was the original area of the pea bed, in m²?',
+    type: 'number',
+    answer: 10,
+    diagram: '<div class="shape-vis">' +
+      '<svg class="lg" width="460" height="300" viewBox="0 0 460 300" role="img" ' +
+      'aria-label="Two diagrams of the same garden. Before: a pea bed above a strawberry bed. After: the pea bed is taller and square, and the strawberry bed is a narrow strip.">' +
+      '<g>' +
+        '<text class="cap" x="105" y="26" text-anchor="middle">Before</text>' +
+        '<rect class="peas" x="40" y="40" width="130" height="80"/>' +
+        '<text class="bed-lbl" x="105" y="85" text-anchor="middle">Peas</text>' +
+        '<rect class="straw" x="40" y="120" width="130" height="130"/>' +
+        '<text class="bed-lbl" x="105" y="190" text-anchor="middle">Strawberries</text>' +
+      '</g>' +
+      '<g>' +
+        '<text class="cap" x="355" y="26" text-anchor="middle">After</text>' +
+        '<rect class="peas" x="290" y="40" width="130" height="170"/>' +
+        '<text class="bed-lbl" x="355" y="130" text-anchor="middle">Peas</text>' +
+        '<rect class="straw" x="290" y="210" width="130" height="40"/>' +
+        '<text class="bed-lbl" x="355" y="235" text-anchor="middle">Strawberries</text>' +
+      '</g>' +
+      '<text class="note" x="230" y="272" text-anchor="middle">The outer garden stays the same size.</text>' +
+      '<text class="note" x="230" y="292" text-anchor="middle">Diagram not to scale.</text>' +
+      '</svg></div>',
+    explanation: 'The strawberry bed lost a strip 3 m deep across the full width of the garden, so width × 3 = 15, which makes the width 5 m. The pea bed is now a 5 m square, so the side that was lengthened used to be 5 − 3 = 2 m. Original pea bed = 5 × 2 = 10 m².',
+    hint: 'The strawberries lost a strip 3 m deep running the full width of the garden. What must that width be?'
+  }
+];
+
+/* ---------------------------------------------------------------
+   Start up
+---------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', function () {
+  initSuccessList();
+  initViewToggle();
+  initTiers();
+  initReflection();
+  buildQuiz('green', greenQuestions);
+  buildQuiz('amber', amberQuestions);
+  buildQuiz('red', redQuestions);
+  updateScore();
+});
+</script>
+
+</body>
+</html>
