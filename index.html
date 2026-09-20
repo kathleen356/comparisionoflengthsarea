@@ -73,6 +73,13 @@
   .hero{padding:54px 0 30px}
   .eyebrow{font-family:var(--mono); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
     color:var(--accent); font-weight:700}
+  .eyebrow-row{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:6px}
+  .curric-link{font-family:var(--display); font-weight:700; font-size:.72rem; cursor:pointer; text-decoration:none;
+    padding:7px 16px; border-radius:999px; border:1.5px solid var(--grid-strong);
+    background:var(--card); color:var(--accent); transition:transform .1s, border-color .15s, color .15s;
+    display:inline-block}
+  .curric-link:hover{border-color:var(--accent); color:var(--accent)}
+  .curric-link:active{transform:translateY(1px)}
   .hero h1{font-family:var(--display); font-weight:700; line-height:1.05;
     font-size:clamp(2.3rem,6vw,4.2rem); margin:.25em 0 .15em; letter-spacing:-.5px}
   .hero h1 .green{color:var(--c-green)} .hero h1 .pink{color:var(--mode)}
@@ -279,7 +286,10 @@
 
 <main class="wrap">
   <section class="hero">
-    <div class="eyebrow">6.2 Measurement</div>
+    <div class="eyebrow-row">
+      <div class="eyebrow">Learning Intention</div>
+      <a class="curric-link" href="https://f10.vcaa.vic.edu.au/learning-areas/mathematics/curriculum?level=6#VC2M6M03" target="_blank" rel="noopener">VC2M6M03 &middot; Victorian Curriculum 2.0 &#8599;</a>
+    </div>
     <h1>6.2 Solving problems involving the <span class="green">comparison</span> of <span class="pink">lengths and areas</span></h1>
     <p class="lead">We are learning to solve problems involving the comparison of lengths and areas, using appropriate units.</p>
 
